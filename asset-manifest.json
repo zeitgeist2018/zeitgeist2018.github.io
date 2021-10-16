@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "./static/css/main.52cb7c1b.chunk.css",
-    "main.js": "./static/js/main.b10d366f.chunk.js",
-    "main.js.map": "./static/js/main.b10d366f.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.fff6ee50.js",
-    "runtime-main.js.map": "./static/js/runtime-main.fff6ee50.js.map",
-    "static/js/2.641b100e.chunk.js": "./static/js/2.641b100e.chunk.js",
-    "static/js/2.641b100e.chunk.js.map": "./static/js/2.641b100e.chunk.js.map",
+    "main.css": "./static/css/main.603f8a9f.chunk.css",
+    "main.js": "./static/js/main.247bb746.chunk.js",
+    "main.js.map": "./static/js/main.247bb746.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.86fce833.js",
+    "runtime-main.js.map": "./static/js/runtime-main.86fce833.js.map",
+    "static/js/2.977e82d0.chunk.js": "./static/js/2.977e82d0.chunk.js",
+    "static/js/2.977e82d0.chunk.js.map": "./static/js/2.977e82d0.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.7e54507e191788ffd09cbf96aceed616.js": "./precache-manifest.7e54507e191788ffd09cbf96aceed616.js",
+    "precache-manifest.3e3d4805807b63225522445be4f19eb7.js": "./precache-manifest.3e3d4805807b63225522445be4f19eb7.js",
     "service-worker.js": "./service-worker.js",
-    "static/css/main.52cb7c1b.chunk.css.map": "./static/css/main.52cb7c1b.chunk.css.map",
+    "static/css/main.603f8a9f.chunk.css.map": "./static/css/main.603f8a9f.chunk.css.map",
     "static/media/index.css": "./static/media/Montserrat-Regular.ee653992.ttf",
     "static/media/Oracle-Logo.png": "./static/media/Oracle-Logo.e71d1ba8.png",
     "static/media/address_image.svg": "./static/media/address_image.3b021f8f.svg",
@@ -38,7 +38,7 @@
     "static/media/ibm_logo.png": "./static/media/ibm_logo.6d325fec.png",
     "static/media/iiitk_logo.png": "./static/media/iiitk_logo.c350d799.png",
     "static/media/intel_logo.jpg": "./static/media/intel_logo.29152cf7.jpg",
-    "static/media/jsFramework.svg": "./static/media/jsFramework.b05ae5b5.svg",
+    "static/media/jsFramework.svg": "./static/media/jsFramework.481aae94.svg",
     "static/media/legato_logo.png": "./static/media/legato_logo.4ba886ba.png",
     "static/media/manOnTable.svg": "./static/media/manOnTable.52be3144.svg",
     "static/media/muffito_logo.png": "./static/media/muffito_logo.db6c1c0d.png",
@@ -53,9 +53,9 @@
     "static/media/ui_ux_design.svg": "./static/media/ui_ux_design.67a6a11c.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.fff6ee50.js",
-    "static/js/2.641b100e.chunk.js",
-    "static/css/main.52cb7c1b.chunk.css",
-    "static/js/main.b10d366f.chunk.js"
+    "static/js/runtime-main.86fce833.js",
+    "static/js/2.977e82d0.chunk.js",
+    "static/css/main.603f8a9f.chunk.css",
+    "static/js/main.247bb746.chunk.js"
   ]
 }
