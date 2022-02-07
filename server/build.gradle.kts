@@ -11,6 +11,7 @@ dependencies {
     implementation("io.ktor:ktor-jackson:1.5.3")
     implementation("io.ktor:ktor-server-netty:1.5.3")
     implementation("io.ktor:ktor-webjars:1.5.3")
+    implementation("io.ktor:ktor-thymeleaf:1.5.3")
     implementation("io.arrow-kt:arrow-core:1.0.1")
 
     implementation("ch.qos.logback:logback-classic:1.2.10")

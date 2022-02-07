@@ -5,8 +5,10 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import io.ktor.thymeleaf.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
@@ -20,10 +22,17 @@ class App @Inject constructor(
         if (started.compareAndSet(false, true)) {
 
             ktorEngine = embeddedServer(Netty, port = 7200, host = "0.0.0.0") {
+                install(Thymeleaf) {
+                    setTemplateResolver(ClassLoaderTemplateResolver().apply {
+                        prefix = "thymeleaf/"
+                        suffix = ".html"
+                        characterEncoding = "utf-8"
+                    })
+                }
 
                 routing {
                     get("/") {
-                        call.respondText("Hola")
+                        call.respond(ThymeleafContent("main"))
                     }
                 }
             }.start(wait = wait)
