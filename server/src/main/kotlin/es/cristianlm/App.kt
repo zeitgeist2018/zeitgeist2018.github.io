@@ -32,7 +32,7 @@ class App @Inject constructor(
 
                 routing {
                     get("/") {
-                        call.respond(ThymeleafContent("main"))
+                        call.respond(ThymeleafContent("main", mapOf()))
                     }
                 }
             }.start(wait = wait)
