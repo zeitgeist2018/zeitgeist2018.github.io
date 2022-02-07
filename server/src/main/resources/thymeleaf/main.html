@@ -8,6 +8,9 @@
 
     <header th:replace="/layout/navbar :: navbar"></header>
 
+    <main class="main">
+        <div th:replace="${content}"></div>
+    </main>
 
     <header th:replace="/layout/footer :: footer"></header>
 

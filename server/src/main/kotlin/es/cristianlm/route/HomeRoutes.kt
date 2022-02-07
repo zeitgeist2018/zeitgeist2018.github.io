@@ -11,7 +11,7 @@ class HomeRoutes @Inject constructor(
 ) : AppRoute {
     override fun Route.configure() {
         get("/") {
-            call.respond(ThymeleafContent("main", mapOf()))
+            call.template("home")
         }
     }
 }

@@ -22,7 +22,7 @@ class App @Inject constructor(
     fun start(wait: Boolean = true) {
         if (started.compareAndSet(false, true)) {
 
-            ktorEngine = embeddedServer(Netty, port = 7200, host = "0.0.0.0", watchPaths = listOf("classes")) {
+            ktorEngine = embeddedServer(Netty, port = 7200, host = "0.0.0.0") {
                 install(Thymeleaf) {
                     setTemplateResolver(ClassLoaderTemplateResolver().apply {
                         prefix = "thymeleaf/"
