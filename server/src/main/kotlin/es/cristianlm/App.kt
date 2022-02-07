@@ -1,7 +1,7 @@
 package es.cristianlm
 
+import es.cristianlm.route.AppRoute
 import io.ktor.application.*
-import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -13,6 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
 class App @Inject constructor(
+    private val routes: List<@JvmSuppressWildcards AppRoute>
 ) {
     private val log: Logger = LoggerFactory.getLogger(javaClass)
     private val started: AtomicBoolean = AtomicBoolean()
@@ -21,7 +22,7 @@ class App @Inject constructor(
     fun start(wait: Boolean = true) {
         if (started.compareAndSet(false, true)) {
 
-            ktorEngine = embeddedServer(Netty, port = 7200, host = "0.0.0.0") {
+            ktorEngine = embeddedServer(Netty, port = 7200, host = "0.0.0.0", watchPaths = listOf("classes")) {
                 install(Thymeleaf) {
                     setTemplateResolver(ClassLoaderTemplateResolver().apply {
                         prefix = "thymeleaf/"
@@ -31,8 +32,8 @@ class App @Inject constructor(
                 }
 
                 routing {
-                    get("/") {
-                        call.respond(ThymeleafContent("main", mapOf()))
+                    route("/") {
+                        routes.forEach { it.apply(this) }
                     }
                 }
             }.start(wait = wait)

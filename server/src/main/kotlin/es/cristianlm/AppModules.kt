@@ -2,6 +2,9 @@ package es.cristianlm
 
 import dagger.Component
 import dagger.Module
+import dagger.Provides
+import es.cristianlm.route.AppRoute
+import es.cristianlm.route.HomeRoutes
 import javax.inject.Singleton
 
 @Singleton
@@ -17,4 +20,11 @@ interface AppContainer {
 @Module
 open class AppConfigModule {
 
+    @Provides
+    @Singleton
+    fun routes(
+        homeRoutes: HomeRoutes
+    ): List<AppRoute> = listOf(
+        homeRoutes
+    )
 }
