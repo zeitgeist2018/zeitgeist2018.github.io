@@ -1,0 +1,9 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "education": "Educación",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacta conmigo"
+  }
+}

@@ -1,7 +1,8 @@
 package es.cristianlm.model
 
 enum class Language(val code: String, val displayName: String) {
-    ENGLISH("en", "English");
+    ENGLISH("en", "English"),
+    SPANISH("es", "Español");
 
     companion object {
         operator fun get(code: String): Language =
@@ -12,4 +13,7 @@ enum class Language(val code: String, val displayName: String) {
 data class Translation(
     val key: String,
     val values: Map<Language, String>
-)
+) {
+    operator fun get(language: Language): String =
+        values[language]!!
+}
