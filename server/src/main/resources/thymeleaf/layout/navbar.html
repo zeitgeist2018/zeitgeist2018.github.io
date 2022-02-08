@@ -4,11 +4,13 @@
 </head>
 <body>
 
-    <header th:fragment="navbar" class="app-header navbar">
-        <ul class="nav navbar-nav d-md-down-none">
-            <li class="nav-item px-3">
-                <a class="nav-link" href="/">Home</a>
-            </li>
+    <header th:fragment="navbar">
+        <ul>
+            <li><a class="nav-link" href="/">${messages["navbar.home"]}</a></li>
+            <li><a class="nav-link" href="/">${messages["navbar.education"]}</a></li>
+            <li><a class="nav-link" href="/">${messages["navbar.experience"]}</a></li>
+            <li><a class="nav-link" href="/">${messages["navbar.projects"]}</a></li>
+            <li><a class="nav-link" href="/">${messages["navbar.contact"]}</a></li>
         </ul>
     </header>
 
