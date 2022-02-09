@@ -35,10 +35,7 @@ class TranslationRepository() {
         val values = availableLanguages()
             .map { getTranslation(key, it) }
             .mapNotNull { it?.values }
-            .reduce { acc, map ->
-                acc.toMutableMap().putAll(map)
-                acc
-            }
+            .reduce { acc, map -> acc.plus(map) }
 
         return Translation(key, values)
     }
@@ -48,7 +45,7 @@ class TranslationRepository() {
             ?.readText()
             ?.let {
                 val json = parse(it).jsonObject
-                val keyParts = key.split(",")
+                val keyParts = key.split(".")
                 var currentElement: JsonElement? = null
                 keyParts.forEach { part ->
                     currentElement =
