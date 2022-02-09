@@ -3,6 +3,7 @@ package es.cristianlm
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import es.cristianlm.app.module.DataModule
 import es.cristianlm.route.AppRoute
 import es.cristianlm.route.HomeRoutes
 import javax.inject.Singleton
@@ -10,7 +11,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        AppConfigModule::class
+        AppConfigModule::class,
+        DataModule::class
     ]
 )
 interface AppContainer {
