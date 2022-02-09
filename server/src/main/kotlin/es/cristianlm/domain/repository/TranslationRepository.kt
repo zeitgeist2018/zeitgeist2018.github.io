@@ -5,16 +5,46 @@ import es.cristianlm.model.Translation
 import kotlinx.serialization.json.*
 import java.io.File
 
-class TranslationRepository() {
+class TranslationRepository {
 
     private val folder = "/translations"
 
     fun getAllTranslationKeys(): Set<String> =
         availableLanguages()
-            .map { javaClass.getResource(getPath(it))?.readText()!! }
-            .map { parse(it) }
+            .map { javaClass.getResource(getFilePath(it))?.readText()!! }
+            .map { parseToJson(it) }
             .map { extractKeys(it) }
             .reduce { acc, set -> acc.plus(set) }
+
+    fun getTranslation(key: String): Translation? {
+        val values = availableLanguages()
+            .map { getTranslation(key, it) }
+            .mapNotNull { it?.values }
+            .reduce { acc, map -> acc.plus(map) }
+
+        return if (values.isNotEmpty()) Translation(key, values) else null
+    }
+
+    fun getTranslation(key: String, lang: Language): Translation? =
+        javaClass.getResource(getFilePath(lang))
+            ?.readText()
+            ?.let {
+                val json = parseToJson(it).jsonObject
+                val keyParts = key.split(".")
+                var currentElement: JsonElement? = null
+                keyParts.forEach { part ->
+                    currentElement =
+                        if (currentElement == null) {
+                            json[part]
+                        } else if (keyParts.last() == part) {
+                            currentElement?.jsonObject?.get(part)?.jsonPrimitive
+                        } else {
+                            currentElement?.jsonObject?.get(part)?.jsonObject
+                        }
+                }
+                Translation(key, mapOf(lang to currentElement!!.jsonPrimitive.content))
+            }
+
 
     private fun extractKeys(jsonElement: JsonElement, key: String? = null): Set<String> =
         when (jsonElement) {
@@ -31,39 +61,10 @@ class TranslationRepository() {
             else -> setOf()
         }
 
-    fun getTranslation(key: String): Translation? {
-        val values = availableLanguages()
-            .map { getTranslation(key, it) }
-            .mapNotNull { it?.values }
-            .reduce { acc, map -> acc.plus(map) }
-
-        return Translation(key, values)
-    }
-
-    fun getTranslation(key: String, lang: Language): Translation? =
-        javaClass.getResource(getPath(lang))
-            ?.readText()
-            ?.let {
-                val json = parse(it).jsonObject
-                val keyParts = key.split(".")
-                var currentElement: JsonElement? = null
-                keyParts.forEach { part ->
-                    currentElement =
-                        if (currentElement == null) {
-                            json[part]
-                        } else if (keyParts.last() == part) {
-                            currentElement?.jsonObject?.get(part)?.jsonPrimitive
-                        } else {
-                            currentElement?.jsonObject?.get(part)?.jsonObject
-                        }
-                }
-                Translation(key, mapOf(lang to currentElement!!.jsonPrimitive.content))
-            }
-
     private fun availableLanguages(): Set<Language> =
         javaClass.getResource(folder)?.file
-            ?.let {
-                File(it)
+            ?.let { file ->
+                File(file)
                     .walk()
                     .filter { it.isFile }
                     .filter { it.name.endsWith(".json") }
@@ -72,8 +73,8 @@ class TranslationRepository() {
                     .toSet()
             } ?: setOf()
 
-    private fun parse(json: String): JsonElement =
+    private fun parseToJson(json: String): JsonElement =
         Json.parseToJsonElement(json)
 
-    private fun getPath(lang: Language) = "$folder/${lang.code}.json"
+    private fun getFilePath(lang: Language) = "$folder/${lang.code}.json"
 }
