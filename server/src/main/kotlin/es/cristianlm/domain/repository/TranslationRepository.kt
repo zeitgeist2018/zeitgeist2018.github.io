@@ -2,15 +2,34 @@ package es.cristianlm.domain.repository
 
 import es.cristianlm.model.Language
 import es.cristianlm.model.Translation
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.*
 import java.io.File
 
 class TranslationRepository() {
 
-    private val folder = "translations"
+    private val folder = "/translations"
+
+    fun getAllTranslationKeys(): Set<String> =
+        availableLanguages()
+            .map { javaClass.getResource(getPath(it))?.readText()!! }
+            .map { parse(it) }
+            .map { extractKeys(it) }
+            .reduce { acc, set -> acc.plus(set) }
+
+    private fun extractKeys(jsonElement: JsonElement, key: String? = null): Set<String> =
+        when (jsonElement) {
+            is JsonPrimitive -> setOf(key ?: "")
+            is JsonObject -> {
+                val prefix = key?.let { "$it." }.orEmpty()
+                jsonElement.jsonObject.keys.map { nextKey ->
+                    extractKeys(
+                        jsonElement[nextKey]!!,
+                        "$prefix$nextKey"
+                    )
+                }.reduce { acc, set -> acc.plus(set) }
+            }
+            else -> setOf()
+        }
 
     fun getTranslation(key: String): Translation? {
         val values = availableLanguages()
