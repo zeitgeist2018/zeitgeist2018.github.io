@@ -3,9 +3,7 @@ package es.cristianlm.route
 import es.cristianlm.domain.service.TranslationService
 import es.cristianlm.model.Language
 import io.ktor.application.*
-import io.ktor.response.*
 import io.ktor.routing.*
-import io.ktor.thymeleaf.*
 import javax.inject.Inject
 
 class HomeRoutes @Inject constructor(
@@ -13,7 +11,15 @@ class HomeRoutes @Inject constructor(
 ) : AppRoute {
     override fun Route.configure() {
         get("/") {
-            call.template("home")
+            val messages = translationService
+                .getTranslations("navbar", Language.SPANISH)
+                .associate { it.key to it.values.values.first() }
+
+            call.template(
+                "home", mapOf(
+                    "messages" to messages
+                )
+            )
         }
     }
 }
