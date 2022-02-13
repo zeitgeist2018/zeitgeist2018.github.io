@@ -1,7 +1,11 @@
 package es.cristianlm
 
+import es.cristianlm.domain.service.TranslationService
+import es.cristianlm.model.Language
 import es.cristianlm.route.AppRoute
+import es.cristianlm.route.template
 import io.ktor.application.*
+import io.ktor.features.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -13,7 +17,8 @@ import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
 class App @Inject constructor(
-    private val routes: List<@JvmSuppressWildcards AppRoute>
+    private val routes: List<@JvmSuppressWildcards AppRoute>,
+    private val translationService: TranslationService
 ) {
     private val log: Logger = LoggerFactory.getLogger(javaClass)
     private val started: AtomicBoolean = AtomicBoolean()
@@ -29,6 +34,20 @@ class App @Inject constructor(
                         suffix = ".html"
                         characterEncoding = "utf-8"
                     })
+                }
+
+                install(StatusPages) {
+                    exception<Throwable> { cause ->
+                        val messages =
+                            translationService.getTranslationsAsMap("navbar", Language.SPANISH)
+                                .plus(translationService.getTranslationsAsMap("status", Language.SPANISH))
+                        call.template(
+                            "status/500", mapOf(
+                                "messages" to messages
+                            )
+                        )
+                        log.error("Unexpected error", cause)
+                    }
                 }
 
                 routing {

@@ -9,6 +9,10 @@ class TranslationService @Inject constructor(
     private val translationRepository: TranslationRepository
 ) {
 
+    fun getTranslationsAsMap(prefix: String, lang: Language): Map<String, String> =
+        translationRepository.getTranslations(prefix, lang)
+            .associate { it.key to it.values.values.first() }
+
     fun getTranslations(prefix: String, lang: Language): List<Translation> =
         translationRepository.getTranslations(prefix, lang)
 

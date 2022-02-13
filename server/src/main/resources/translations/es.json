@@ -5,5 +5,8 @@
     "experience": "Experiencia",
     "projects": "Proyectos",
     "contact": "Contacta conmigo"
+  },
+  "status": {
+    "500": "Ha ocurrido un error. Por favor, reinténtalo más tarde"
   }
 }

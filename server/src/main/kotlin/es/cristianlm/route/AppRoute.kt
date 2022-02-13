@@ -10,11 +10,12 @@ interface AppRoute {
 
     fun Route.configure()
 
-    suspend fun ApplicationCall.template(name: String, params: Map<String, Any> = mapOf()) {
-        val model = mutableMapOf<String, Any>(
-            "content" to "/pages/$name"
-        )
-        model.putAll(params)
-        respond(ThymeleafContent("main", model))
-    }
+}
+
+suspend fun ApplicationCall.template(name: String, params: Map<String, Any> = mapOf()) {
+    val model = mutableMapOf<String, Any>(
+        "content" to "/pages/$name"
+    )
+    model.putAll(params)
+    respond(ThymeleafContent("main", model))
 }
