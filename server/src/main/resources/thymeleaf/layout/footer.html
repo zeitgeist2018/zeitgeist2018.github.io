@@ -7,9 +7,13 @@
     <footer th:fragment="footer">
         <div>
             <a href="/">Cristian Lobo's portfolio</a>
-            <span>&copy; 2022</span>
+            <span id="copyright-year"></span>
         </div>
     </footer>
+    <script type="application/javascript">
+        const year = new Date().getFullYear();
+        document.getElementById('copyright-year').innerHTML = `&copy; ${year}`
+    </script>
 
 </body>
 </html>
