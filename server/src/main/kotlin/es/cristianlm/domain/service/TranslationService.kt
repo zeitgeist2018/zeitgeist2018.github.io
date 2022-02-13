@@ -9,9 +9,12 @@ class TranslationService @Inject constructor(
     private val translationRepository: TranslationRepository
 ) {
 
-    fun getTranslation(key: String, language: Language? = null): Translation? =
-        if (language != null) {
-            translationRepository.getTranslation(key, language)
+    fun getTranslations(prefix: String, lang: Language): List<Translation> =
+        translationRepository.getTranslations(prefix, lang)
+
+    fun getTranslation(key: String, lang: Language? = null): Translation? =
+        if (lang != null) {
+            translationRepository.getTranslation(key, lang)
         } else {
             translationRepository.getTranslation(key)
         }
