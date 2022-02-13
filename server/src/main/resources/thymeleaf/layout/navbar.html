@@ -6,11 +6,11 @@
 
     <header th:fragment="navbar">
         <ul>
-            <li><a class="nav-link" href="/">${messages["navbar.home"]}</a></li>
-            <li><a class="nav-link" href="/">${messages["navbar.education"]}</a></li>
-            <li><a class="nav-link" href="/">${messages["navbar.experience"]}</a></li>
-            <li><a class="nav-link" href="/">${messages["navbar.projects"]}</a></li>
-            <li><a class="nav-link" href="/">${messages["navbar.contact"]}</a></li>
+            <li><a class="nav-link" href="/" th:text='${messages["navbar.home"]}'></a></li>
+            <li><a class="nav-link" href="/" th:text='${messages["navbar.education"]}'></a></li>
+            <li><a class="nav-link" href="/" th:text='${messages["navbar.experience"]}'></a></li>
+            <li><a class="nav-link" href="/" th:text='${messages["navbar.projects"]}'></a></li>
+            <li><a class="nav-link" href="/" th:text='${messages["navbar.contact"]}'></a></li>
         </ul>
     </header>
 
