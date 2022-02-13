@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import es.cristianlm.app.module.DataModule
 import es.cristianlm.route.AppRoute
+import es.cristianlm.route.AssetRoutes
 import es.cristianlm.route.HomeRoutes
 import javax.inject.Singleton
 
@@ -25,8 +26,10 @@ open class AppConfigModule {
     @Provides
     @Singleton
     fun routes(
-        homeRoutes: HomeRoutes
+        assetRoutes: AssetRoutes,
+        homeRoutes: HomeRoutes,
     ): List<AppRoute> = listOf(
+        assetRoutes,
         homeRoutes
     )
 }
