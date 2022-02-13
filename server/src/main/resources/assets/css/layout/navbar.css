@@ -1,0 +1,30 @@
+.navbar {
+    text-align: right;
+    font-size: 1.2rem;
+    padding-top: 25px;
+}
+
+.navbar-item {
+    position: relative;
+    margin-right: 40px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-family: Google Sans Regular, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.navbar-item::before {
+    content: '';
+    position: absolute;
+    background-color: var(--font-color-1);
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: 200ms ease-out;
+}
+
+.navbar-item:hover::before {
+    transform: scaleX(1);
+}

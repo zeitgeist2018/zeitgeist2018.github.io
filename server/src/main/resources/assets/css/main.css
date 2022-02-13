@@ -7,4 +7,9 @@ body {
 
 body a {
     text-decoration: none;
+    color: var(--font-color-1);
+}
+
+body a:visited {
+    color: var(--font-color-1);
 }

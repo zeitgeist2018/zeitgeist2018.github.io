@@ -1,18 +1,19 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="/assets/css/layout/navbar.css">
 </head>
 <body>
 
-    <header th:fragment="navbar">
-        <ul>
-            <li><a class="nav-link" href="/" th:text='${messages["navbar.home"]}'></a></li>
-            <li><a class="nav-link" href="/" th:text='${messages["navbar.education"]}'></a></li>
-            <li><a class="nav-link" href="/" th:text='${messages["navbar.experience"]}'></a></li>
-            <li><a class="nav-link" href="/" th:text='${messages["navbar.projects"]}'></a></li>
-            <li><a class="nav-link" href="/" th:text='${messages["navbar.contact"]}'></a></li>
-        </ul>
-    </header>
+<header th:fragment="navbar">
+    <nav class="navbar">
+        <a class="navbar-item" href="/" th:text='${messages["navbar.home"]}'></a>
+        <a class="navbar-item" href="/education" th:text='${messages["navbar.education"]}'></a>
+        <a class="navbar-item" href="/experience" th:text='${messages["navbar.experience"]}'></a>
+        <a class="navbar-item" href="/projects" th:text='${messages["navbar.projects"]}'></a>
+        <a class="navbar-item" href="/contact" th:text='${messages["navbar.contact"]}'></a>
+    </nav>
+</header>
 
 </body>
 </html>
