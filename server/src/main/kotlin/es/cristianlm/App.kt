@@ -1,5 +1,7 @@
 package es.cristianlm
 
+import es.cristianlm.app.feature.Session
+import es.cristianlm.app.feature.SessionFeature
 import es.cristianlm.domain.service.TranslationService
 import es.cristianlm.model.Language
 import es.cristianlm.route.AppRoute
@@ -9,6 +11,7 @@ import io.ktor.features.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import io.ktor.sessions.*
 import io.ktor.thymeleaf.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -49,6 +52,12 @@ class App @Inject constructor(
                         log.error("Unexpected error", cause)
                     }
                 }
+
+                install(Sessions) {
+                    cookie<Session>("session")
+                }
+
+                install(SessionFeature)
 
                 routing {
                     route("/") {

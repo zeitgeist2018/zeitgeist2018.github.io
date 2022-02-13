@@ -30,6 +30,7 @@ subprojects {
 
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.0")
+        implementation("io.ktor:ktor-server-sessions:1.6.0")
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
         implementation("com.google.dagger:dagger:2.40.1")
         kapt("com.google.dagger:dagger-compiler:2.40.1")

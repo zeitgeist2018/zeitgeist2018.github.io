@@ -4,7 +4,6 @@ import es.cristianlm.domain.service.TranslationService
 import es.cristianlm.model.Language
 import io.ktor.application.*
 import io.ktor.routing.*
-import java.lang.RuntimeException
 import javax.inject.Inject
 
 class HomeRoutes @Inject constructor(

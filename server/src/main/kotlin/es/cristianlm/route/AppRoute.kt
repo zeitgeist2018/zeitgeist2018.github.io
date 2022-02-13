@@ -4,8 +4,11 @@ import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.thymeleaf.*
+import org.slf4j.LoggerFactory
 
 interface AppRoute {
+    fun log() = LoggerFactory.getLogger(javaClass)
+
     fun apply(route: Route) = route.configure()
 
     fun Route.configure()
