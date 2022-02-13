@@ -6,13 +6,13 @@ import io.ktor.sessions.*
 import io.ktor.util.*
 import io.ktor.util.pipeline.*
 import kotlinx.coroutines.withContext
-import org.slf4j.LoggerFactory
 
 data class Session(
     val language: Language
 ) {
     companion object {
-        val default = Session(Language.ENGLISH)
+        const val name = "session"
+        val default = Session(Language.default)
     }
 }
 
@@ -51,10 +51,12 @@ class SessionFeature private constructor(
 }
 
 fun CurrentSession.start() {
-    set("session", Session.default)
+    set(Session.name, Session.default)
 }
 
-fun CurrentSession.get(): Session? = get("session")?.let { it as Session }
+fun CurrentSession.get(): Session? = get(Session.name)?.let { it as Session }
 
 fun ApplicationCall.getLang(): Language =
-    sessions.get("session")?.let { it as Session }?.language ?: throw IllegalStateException("Session not set?")
+    sessions.get(Session.name)?.let { it as Session }?.language ?: throw IllegalStateException("Session not set?")
+
+fun ApplicationCall.setLang(language: Language) = sessions.set(Session.name, Session(language))

@@ -7,6 +7,7 @@ import es.cristianlm.app.module.DataModule
 import es.cristianlm.route.AppRoute
 import es.cristianlm.route.AssetRoutes
 import es.cristianlm.route.HomeRoutes
+import es.cristianlm.route.SessionRoutes
 import javax.inject.Singleton
 
 @Singleton
@@ -27,9 +28,11 @@ open class AppConfigModule {
     @Singleton
     fun routes(
         assetRoutes: AssetRoutes,
+        sessionRoutes: SessionRoutes,
         homeRoutes: HomeRoutes,
     ): List<AppRoute> = listOf(
         assetRoutes,
+        sessionRoutes,
         homeRoutes
     )
 }

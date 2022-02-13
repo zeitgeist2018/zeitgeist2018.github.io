@@ -7,6 +7,9 @@ enum class Language(val code: String, val displayName: String) {
     companion object {
         operator fun get(code: String): Language =
             values().find { it.code == code }!!
+
+        val default = ENGLISH
+        fun isValid(code: String): Boolean = values().map { it.code }.contains(code)
     }
 }
 
