@@ -12,8 +12,19 @@
         <a class="navbar-item" href="/experience" th:text='${messages["navbar.experience"]}'></a>
         <a class="navbar-item" href="/projects" th:text='${messages["navbar.projects"]}'></a>
         <a class="navbar-item" href="/contact" th:text='${messages["navbar.contact"]}'></a>
+        <a class="navbar-item language-btn" href="#"><img src="/assets/img/flags/spain.png" alt="Spain flag"></a>
+        <a class="navbar-item language-btn" href="#"><img src="/assets/img/flags/uk.png" alt="UK flag"></a>
     </nav>
 </header>
+
+<script type="application/javascript">
+    Object.values(document.getElementsByClassName('language-btn'))
+        .forEach(element => {
+            element.addEventListener('click', e => {
+                console.log(e);
+            })
+        })
+</script>
 
 </body>
 </html>

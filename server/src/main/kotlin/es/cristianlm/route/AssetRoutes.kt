@@ -7,7 +7,7 @@ import javax.inject.Inject
 class AssetRoutes @Inject constructor(
 ) : AppRoute {
     override fun Route.configure() {
-        static("assets") {
+        static("/assets") {
             resources("assets")
         }
     }
