@@ -42,8 +42,8 @@ class App @Inject constructor(
                 install(StatusPages) {
                     exception<Throwable> { cause ->
                         val messages =
-                            translationService.getTranslationsAsMap("navbar", Language.SPANISH)
-                                .plus(translationService.getTranslationsAsMap("status", Language.SPANISH))
+                            translationService.getTranslationsAsMap("navbar", Language.ENGLISH)
+                                .plus(translationService.getTranslationsAsMap("status", Language.ENGLISH))
                         call.template(
                             "status/500", mapOf(
                                 "messages" to messages

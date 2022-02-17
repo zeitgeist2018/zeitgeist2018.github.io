@@ -1,7 +1,7 @@
 package es.cristianlm.route
 
+import es.cristianlm.app.feature.getLang
 import es.cristianlm.domain.service.TranslationService
-import es.cristianlm.model.Language
 import io.ktor.application.*
 import io.ktor.routing.*
 import javax.inject.Inject
@@ -12,7 +12,7 @@ class HomeRoutes @Inject constructor(
     override fun Route.configure() {
         get("/") {
             val messages = translationService
-                .getTranslationsAsMap("navbar", Language.SPANISH)
+                .getTranslationsAsMap("navbar", call.getLang())
 
             call.template(
                 "home", mapOf(

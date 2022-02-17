@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <link rel="stylesheet" href="/assets/css/layout/navbar.css">
+
+    <script type="application/javascript" src="/assets/js/http.js"></script>
 </head>
 <body>
 
@@ -12,8 +14,12 @@
         <a class="navbar-item" href="/experience" th:text='${messages["navbar.experience"]}'></a>
         <a class="navbar-item" href="/projects" th:text='${messages["navbar.projects"]}'></a>
         <a class="navbar-item" href="/contact" th:text='${messages["navbar.contact"]}'></a>
-        <a class="navbar-item language-btn" href="#"><img src="/assets/img/flags/spain.png" alt="Spain flag"></a>
-        <a class="navbar-item language-btn" href="#"><img src="/assets/img/flags/uk.png" alt="UK flag"></a>
+        <a class="navbar-item language-btn" href="#">
+            <img src="/assets/img/flags/spain.png" alt="Spain flag" data-language="es">
+        </a>
+        <a class="navbar-item language-btn" href="#">
+            <img src="/assets/img/flags/uk.png" alt="UK flag" data-language="en">
+        </a>
     </nav>
 </header>
 
@@ -21,7 +27,8 @@
     Object.values(document.getElementsByClassName('language-btn'))
         .forEach(element => {
             element.addEventListener('click', e => {
-                console.log(e);
+                const lang = e.target.getAttribute('data-language');
+                post('/session?lang=' + lang, null, response => location.reload())
             })
         })
 </script>

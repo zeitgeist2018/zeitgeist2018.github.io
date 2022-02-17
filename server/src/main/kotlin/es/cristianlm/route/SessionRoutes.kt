@@ -11,7 +11,7 @@ import javax.inject.Inject
 class SessionRoutes @Inject constructor(
 ) : AppRoute {
     override fun Route.configure() {
-        get("/session") {
+        post("/session") {
             val lang = call.request.queryParameters["lang"]?.let {
                 if (Language.isValid(it)) Language[it] else Language.default
             } ?: Language.default
