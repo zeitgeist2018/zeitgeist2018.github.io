@@ -2,12 +2,14 @@ package es.cristianlm
 
 import es.cristianlm.app.feature.Session
 import es.cristianlm.app.feature.SessionFeature
+import es.cristianlm.app.feature.getLang
+import es.cristianlm.domain.service.PageSection
 import es.cristianlm.domain.service.TranslationService
-import es.cristianlm.model.Language
 import es.cristianlm.route.AppRoute
 import es.cristianlm.route.template
 import io.ktor.application.*
 import io.ktor.features.*
+import io.ktor.http.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -40,10 +42,20 @@ class App @Inject constructor(
                 }
 
                 install(StatusPages) {
+                    status(HttpStatusCode.NotFound) {
+                        val messages =
+                            translationService.getTranslations(PageSection.NAVBAR, call.getLang())
+                                .plus(translationService.getTranslationsAsMap("status", call.getLang()))
+                        call.template(
+                            "status/404", mapOf(
+                                "messages" to messages
+                            )
+                        )
+                    }
                     exception<Throwable> { cause ->
                         val messages =
-                            translationService.getTranslationsAsMap("navbar", Language.ENGLISH)
-                                .plus(translationService.getTranslationsAsMap("status", Language.ENGLISH))
+                            translationService.getTranslations(PageSection.NAVBAR, call.getLang())
+                                .plus(translationService.getTranslationsAsMap("status", call.getLang()))
                         call.template(
                             "status/500", mapOf(
                                 "messages" to messages
