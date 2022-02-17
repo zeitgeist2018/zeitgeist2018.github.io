@@ -7,4 +7,6 @@ footer {
     right: 0;
     padding: 50px;
     background-color: var(--bg-color-2);
+    color: var(--font-color-clear-2);
+    text-align: center;
 }

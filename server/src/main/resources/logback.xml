@@ -8,7 +8,7 @@
     </appender>
 
     <logger name="es.cristianlm" level="debug"/>
-    <logger name="ktor.application" level="warn"/>
+<!--    <logger name="ktor.application" level="warn"/>-->
 
     <root level="info">
         <appender-ref ref="STDOUT"/>
