@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm") version "1.6.10"
     kotlin("kapt") version "1.6.10"
     kotlin("plugin.serialization") version "1.6.10"
+    id("versioning")
 }
 
 allprojects {
@@ -14,13 +15,14 @@ allprojects {
     group = "es.cristianlm"
 }
 
-//println("Version: $version")
+println("Version: $version")
 
 subprojects {
     apply(plugin = "java")
     apply(plugin = "kotlin")
     apply(plugin = "org.jetbrains.kotlin.kapt")
     apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
+    apply(plugin = "versioning")
 
     tasks {
         withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
