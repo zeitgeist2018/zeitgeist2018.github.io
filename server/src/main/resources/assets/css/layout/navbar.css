@@ -13,7 +13,7 @@
     -webkit-font-smoothing: antialiased;
 }
 
-.navbar-item::before {
+.navbar-item:not(.language-btn)::before {
     content: '';
     position: absolute;
     background-color: var(--font-color-1);
@@ -27,4 +27,12 @@
 
 .navbar-item:hover::before {
     transform: scaleX(1);
+}
+
+.navbar-item.language-btn {
+    margin-right: 20px;
+}
+
+.navbar-item.language-btn img {
+    max-height: 20px;
 }

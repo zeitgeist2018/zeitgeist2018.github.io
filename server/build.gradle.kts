@@ -24,13 +24,15 @@ tasks.processResources {
     into("$buildDir/resources/main")
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
-    filter(
-        ReplaceTokens::class, "tokens" to mapOf(
-            "BUILD_VERSION" to version,
-            "BUILD_DATE" to DateTimeFormatter.ISO_DATE_TIME.format(ZonedDateTime.now()),
-            "BUILD_MACHINE" to InetAddress.getLocalHost().hostName
+    filesMatching("application.conf") {
+        filter(
+            ReplaceTokens::class, "tokens" to mapOf(
+                "BUILD_VERSION" to version,
+                "BUILD_DATE" to DateTimeFormatter.ISO_DATE_TIME.format(ZonedDateTime.now()),
+                "BUILD_MACHINE" to InetAddress.getLocalHost().hostName
+            )
         )
-    )
+    }
 }
 
 tasks.register<JavaExec>("run") {
