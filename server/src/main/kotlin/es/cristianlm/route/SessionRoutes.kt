@@ -16,7 +16,6 @@ class SessionRoutes @Inject constructor(
                 if (Language.isValid(it)) Language[it] else Language.default
             } ?: Language.default
 
-            log().debug("Language changed to ${lang.displayName}")
             call.setLang(lang)
             call.respond(HttpStatusCode.OK)
         }
