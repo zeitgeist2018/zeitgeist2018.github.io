@@ -28,3 +28,12 @@ body a:visited {
     max-height: 80%;
     width: 100%;
 }
+
+main.main {
+    padding: 20px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+}
