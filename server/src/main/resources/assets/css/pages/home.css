@@ -3,3 +3,43 @@
     padding: 50px 300px;
 }
 
+.social-icons {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr .4fr 1fr;
+    font-size: 38px;
+}
+
+.social-icons li {
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+    min-width: 33%;
+    padding: 5px 0;
+    transition: .2s;
+}
+
+.social-icons li:hover {
+    transform: scale(1.1);
+}
+
+.social-icons li i {
+    color: white;
+    font-style: unset;
+}
+
+li.github {
+    justify-self: end;
+    background-color: rgb(24, 23, 23);
+}
+
+li.linkedin {
+    justify-self: center;
+    background-color: rgb(0, 119, 181);
+    min-width: 75%;
+}
+
+li.google {
+    justify-self: start;
+    background-color: rgb(209, 72, 54);
+}
