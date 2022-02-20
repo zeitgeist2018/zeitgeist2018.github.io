@@ -12,6 +12,7 @@ class HomeRoutes @Inject constructor(
     override fun Route.configure() {
         get("/") {
             val messages = translationService
+//                .getTranslationsAsMap(setOf("navbar", "page.home"), call.getLang())
                 .getTranslationsAsMap("navbar", call.getLang())
 
             call.template(

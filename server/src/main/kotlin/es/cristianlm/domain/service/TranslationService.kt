@@ -13,6 +13,12 @@ class TranslationService @Inject constructor(
     private val translationRepository: TranslationRepository
 ) {
 
+    fun getTranslationsAsMap(prefixes: Set<String>, lang: Language): Map<String, String> =
+        prefixes
+            .map { getTranslationsAsMap(it, lang) }
+            .fold(mapOf()) { acc, value -> acc + value }
+
+
     fun getTranslationsAsMap(prefix: String, lang: Language): Map<String, String> =
         translationRepository.getTranslations(prefix, lang)
             .associate { it.key to it.values.values.first() }

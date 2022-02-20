@@ -9,5 +9,10 @@
   "status": {
     "404": "La página que buscas no existe",
     "500": "Ha ocurrido un error. Por favor, reinténtalo más tarde"
+  },
+  "page": {
+    "home": {
+      "title": "Hola, soy Cristian Lobo 🤓"
+    }
   }
 }
