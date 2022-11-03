@@ -8,3 +8,8 @@
 .footer-div {
   margin-top: 2rem;
 }
+
+.build-time {
+  display: block;
+  color: lightgray;
+}
